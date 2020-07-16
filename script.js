@@ -2,15 +2,15 @@
 /-webkit-text-fill-color: transparent;
     -webkit-background-clip: text;*/
 var object=document.getElementById('object')
+var score=0;
 const color=['red','orange','yellow','green','blue','purple','black','brown','pink']
 /*document.getElementById('btn').onclick=function(){
   CreateElement()
 
 }*/
-
 const width=window.innerWidth;
 const height=window.innerHeight;
-var direction=[-200,30];
+var direction=[-600,500];
 object.onmouseover= function(event){
   let shiftX = event.clientX - object.getBoundingClientRect().left;
   let shiftY = event.clientY - object.getBoundingClientRect().top;
@@ -134,15 +134,25 @@ function move_collide(element,direction,duration=1000){
       
       loc=object.getBoundingClientRect()
       if(x_newLocation>=loc.left&&x_newLocation<=loc.right&&y_newLocation<=loc.bottom&&y_newLocation>=loc.top){
-        //element.parentNode.removeChild(element);
+        clearInterval(movingFrames);
         window.location.href='over.html';
+       
       }
       else if(x_newLocation<=0||x_newLocation>=width){
+        clearInterval(movingFrames);
+        score+=Math.abs(direction[0]);
+        document.getElementById('score').innerText='Your score:'+score;
         element.parentNode.removeChild(element);
         x_position=900;
         y_position=(height)*Math.random();
-        direction[0]=direction[0]*1.2;
-        direction[1]=direction[1]*1.2*rand();
+        direction[0]=direction[0]-10;
+        direction[1]=direction[1]*rand();
+        if(direction[1]>0){
+          direction[1]+=8;
+        }
+        else{
+          direction[1]-=8;
+        }
         var ball=document.createElement('DIV');
         ball.style.backgroundColor=color[getRandomNumber()]
         ball.style.position='absolute';
@@ -152,7 +162,7 @@ function move_collide(element,direction,duration=1000){
         ball.style.left=x_position+'px';
         ball.style.top=y_position+'px';
         document.body.appendChild(ball);
-        clearInterval(movingFrames);
+        
         move_collide(ball,direction,duration=1000);
       }
       else if(y_newLocation<=0||y_newLocation>=height){
@@ -162,6 +172,7 @@ function move_collide(element,direction,duration=1000){
         element.style['left'] = x_newLocation + "px";
         element.style['top'] = y_newLocation + "px";
       }
+      
       }
   
   var movingFrames = setInterval(moveAFrame, 10);
@@ -188,6 +199,4 @@ function rand(){
   return Math.random()>=0.5?1:-1;
 }
 
-function game(){
 
-}

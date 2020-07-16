@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html>
+  <script>function load(){document.getElementById('fscore').innerHTML=score;};</script>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>repl.it</title>
     <link rel="stylesheet" href="style.css">
+    
   </head>
-  <body><center>
-    <div id=''>Game Over!</div>
+  <body onload='load()'><center>
+    <div id='g'>Game Over!</div>
+    <p id='fscore'></p>
     <button onClick="location.href='index.html'" type='button' id='back'>Play Again</button></center>
   </body>
+  
 </html>

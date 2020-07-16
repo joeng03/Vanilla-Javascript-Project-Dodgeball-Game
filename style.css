@@ -1,2 +1,13 @@
-
-   
+#back{
+  cursor:pointer;
+  font-size:20px;
+  background-color:white;
+  font-family: "Times New Roman", Times, serif;
+  color:darkgray;
+  border-color:limegreen;
+}
+#g{
+  font-size:20px;
+  color:darkmagenta;
+  font-family: "Times New Roman", Times, serif;
+}
